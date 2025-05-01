@@ -1,0 +1,18 @@
+import Heading from '../components/Heading';
+import Row from '../components/Row';
+import BookingTable from '../features/bookings/BookingTable';
+
+function Bookings() {
+  return (
+    <>
+      <Row>
+        <Heading as='h1'>All Bookings</Heading>
+      </Row>
+      <Row typeof='vertical'>
+        <BookingTable />
+      </Row>
+    </>
+  );
+}
+
+export default Bookings;
