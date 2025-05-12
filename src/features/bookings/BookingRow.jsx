@@ -17,17 +17,17 @@ function BookingRow({
     numNights,
     totalPrice,
     status,
-    guests,
-    cabins,
+    guests: { fullName:guestName, email },
+    cabins: { name: cabinName },
   },
 }) {
   return (
     <Table.Row>
-      <Cabin>cabinName</Cabin>
+      <Cabin>{cabinName}</Cabin>
 
       <Stacked>
-        <span>guestName</span>
-        <span>email</span>
+        <span>{guestName}</span>
+        <span>{email}</span>
       </Stacked>
 
       <Stacked>
