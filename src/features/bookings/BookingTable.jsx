@@ -1,7 +1,50 @@
+import { useBookings } from './useBookings';
+import { add } from 'date-fns';
+
 import Menus from '../../components/Menus';
 import Table from '../../components/Table';
+import BookingRow from './BookingRow';
+
+function fromToday(numDays, withTime = false) {
+  const date = add(new Date(), { days: numDays });
+  if (!withTime) date.setUTCHours(0, 0, 0, 0);
+  return date.toISOString().slice(0, -1);
+}
+
+const fakeBookings = [
+  // CABIN 001
+  {
+    created_at: fromToday(-20, true),
+    startDate: fromToday(0),
+    endDate: fromToday(7),
+    cabinId: 1,
+    guestId: 2,
+    hasBreakfast: true,
+    observations:
+      'I have a gluten allergy and would like to request a gluten-free breakfast.',
+    isPaid: false,
+    numGuests: 1,
+  },
+  {
+    created_at: fromToday(-33, true),
+    startDate: fromToday(-23),
+    endDate: fromToday(-13),
+    cabinId: 1,
+    guestId: 3,
+    hasBreakfast: true,
+    observations: '',
+    isPaid: true,
+    numGuests: 2,
+  },
+];
 
 function BookingTable() {
+  const { bookings, isLoading } = useBookings();
+
+  if (isLoading) return <div>Loading...</div>;
+
+  let testbooking = bookings === 'undefined' ? fakeBookings : bookings;
+
   return (
     <Menus>
       <Table columns='0.6fr 1.8fr 2fr 1fr 1fr 0.6fr'>
@@ -14,28 +57,12 @@ function BookingTable() {
           <div></div>
         </Table.Header>
         <Table.Body
-          data={[]}
-          render={() => (
-            <Table.Row>
-              <img
-                src={null}
-                alt=''
-              />
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <Menus.Menu>
-                <Menus.Toogle id={''} />
-                <Menus.List id={''}>
-                  <Menus.Button icon={<HiSquare2Stack />}>
-                    Duplicate
-                  </Menus.Button>
-                  <Menus.Button icon={<HiPencil />}>Edit</Menus.Button>
-                  <Menus.Button icon={<HiTrash />}>Delete</Menus.Button>
-                </Menus.List>
-              </Menus.Menu>
-            </Table.Row>
+          data={testbooking}
+          render={(booking) => (
+            <BookingRow
+              key={booking?.id}
+              booking={booking}
+            />
           )}
         />
       </Table>

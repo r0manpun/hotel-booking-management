@@ -25,7 +25,6 @@ function CabinRow({ cabin }) {
     regularPrice,
     discount,
     image,
-    description,
   } = cabin;
 
   return (

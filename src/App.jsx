@@ -13,6 +13,7 @@ import AppLayout from './ui/AppLayout';
 import GlobalStyles from './styles/GlobalStyles';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import ProtectedRoutes from './components/ProtectedRoute';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -30,7 +31,13 @@ function App() {
         <GlobalStyles />
         <BrowserRouter>
           <Routes>
-            <Route element={<AppLayout />}>
+            <Route
+              element={
+                // <ProtectedRoutes>
+                //   <AppLayout />
+                // </ProtectedRoutes>
+                <AppLayout />
+              }>
               <Route
                 index
                 element={

@@ -7,6 +7,7 @@ import Button from '../../../components/Button';
 import SpinnerMini from '../../../components/SpinnerMini';
 
 import { useLogin } from './useLogin';
+import { login as loginApi } from '../../../services/apiAuth';
 
 function LoginForm() {
   const [email, setEmail] = useState('');
@@ -16,7 +17,6 @@ function LoginForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email, password);
 
     if (!email || !password) return alert('Please fill in all fields');
 
@@ -29,6 +29,8 @@ function LoginForm() {
         },
       }
     );
+
+    // loginApi({ email, password });
   };
 
   return (

@@ -5,10 +5,10 @@ import BookingTable from '../features/bookings/BookingTable';
 function Bookings() {
   return (
     <>
-      <Row>
+      <Row typeof='horizontal'>
         <Heading as='h1'>All Bookings</Heading>
       </Row>
-      <Row typeof='vertical'>
+      <Row type='vertical'>
         <BookingTable />
       </Row>
     </>
