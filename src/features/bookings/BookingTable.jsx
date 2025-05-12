@@ -4,6 +4,7 @@ import { add } from 'date-fns';
 import Menus from '../../components/Menus';
 import Table from '../../components/Table';
 import BookingRow from './BookingRow';
+import Spinner from '../../components/Spinner';
 
 function fromToday(numDays, withTime = false) {
   const date = add(new Date(), { days: numDays });
@@ -41,7 +42,7 @@ const fakeBookings = [
 function BookingTable() {
   const { bookings, isLoading } = useBookings();
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Spinner />;
 
   let testbooking = bookings === 'undefined' ? fakeBookings : bookings;
 

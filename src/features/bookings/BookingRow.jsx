@@ -21,8 +21,6 @@ function BookingRow({
     cabins,
   },
 }) {
-  console.log(guests);
-
   return (
     <Table.Row>
       <Cabin>cabinName</Cabin>

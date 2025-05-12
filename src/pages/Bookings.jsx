@@ -6,7 +6,7 @@ function Bookings() {
   return (
     <>
       <Row typeof='horizontal'>
-        <Heading as='h1'>All Bookings</Heading>
+        <Heading>All Bookings</Heading>
       </Row>
       <Row type='vertical'>
         <BookingTable />

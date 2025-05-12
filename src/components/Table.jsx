@@ -81,8 +81,7 @@ function Header({ children }) {
 }
 
 function Body({ data, render }) {
-  console.log(data);
-  if (!data.length || data === 'undefined')
+  if (!data?.length || data === 'undefined')
     return <Empty role='table'>No data available at the moment!</Empty>;
 
   return <StyledBody>{data.map(render)}</StyledBody>;
