@@ -1,5 +1,9 @@
 import styled from 'styled-components';
+
 import Table from '../../components/Table';
+
+import { formatCurrency } from '../../utils/helper';
+
 
 const Cabin = styled.div``;
 
@@ -17,7 +21,7 @@ function BookingRow({
     numNights,
     totalPrice,
     status,
-    guests: { fullName:guestName, email },
+    guests: { fullName: guestName, email },
     cabins: { name: cabinName },
   },
 }) {
@@ -36,7 +40,7 @@ function BookingRow({
 
       <Tag>{status}</Tag>
 
-      <Amount>{totalPrice}</Amount>
+      <Amount>{formatCurrency(totalPrice)}</Amount>
     </Table.Row>
   );
 }

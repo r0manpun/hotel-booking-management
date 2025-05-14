@@ -1,10 +1,11 @@
-import { useBookings } from './useBookings';
 import { add } from 'date-fns';
 
 import Menus from '../../components/Menus';
 import Table from '../../components/Table';
 import BookingRow from './BookingRow';
 import Spinner from '../../components/Spinner';
+
+import { useBookings } from './useBookings';
 
 function fromToday(numDays, withTime = false) {
   const date = add(new Date(), { days: numDays });

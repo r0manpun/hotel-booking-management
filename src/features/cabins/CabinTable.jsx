@@ -2,6 +2,7 @@ import Menus from '../../components/Menus';
 import Spinner from '../../components/Spinner';
 import Table from '../../components/Table';
 import CabinRow from './CabinRow';
+
 import { useCabins } from './useCabins';
 
 function CabinTable() {

@@ -6,6 +6,8 @@ import Menus from '../../components/Menus';
 import Modal from '../../components/Modal';
 import CabinEditForm from './CabinEditForm';
 
+import { formatCurrency } from '../../utils/helper';
+
 const TableRow = styled.div`
   display: grid;
   grid-template-columns: 0.6fr 1.8fr 2.2fr 1fr 1fr;
@@ -35,8 +37,8 @@ function CabinRow({ cabin }) {
       />
       <div>{name}</div>
       <div>Fits up to {maxCapacity}</div>
-      <div>{regularPrice}</div>
-      {discount ? <div>{discount}</div> : <span>&mdash;</span>}
+      <div>{formatCurrency(regularPrice)}</div>
+      {discount ? <div>{formatCurrency(discount)}</div> : <span>&mdash;</span>}
 
       <Modal>
         <Menus.Menu>

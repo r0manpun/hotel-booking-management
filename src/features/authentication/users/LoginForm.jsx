@@ -7,7 +7,6 @@ import Button from '../../../components/Button';
 import SpinnerMini from '../../../components/SpinnerMini';
 
 import { useLogin } from './useLogin';
-import { login as loginApi } from '../../../services/apiAuth';
 
 function LoginForm() {
   const [email, setEmail] = useState('');
@@ -29,8 +28,6 @@ function LoginForm() {
         },
       }
     );
-
-    // loginApi({ email, password });
   };
 
   return (
