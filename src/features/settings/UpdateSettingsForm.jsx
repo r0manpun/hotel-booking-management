@@ -1,15 +1,29 @@
 import Form from '../../components/Form';
 import FormRow from '../../components/FormRow';
 import Input from '../../components/Input';
+import Spinner from '../../components/Spinner';
+
+import { useSettings } from './useSettings';
 
 function UpdateSettingsForm() {
+  const { settings, isLoading } = useSettings();
+
+  const {
+    minBookingLength,
+    maxBookingLength,
+    maxGuestsPerBooking,
+    breakfastPrice,
+  } = settings || {};
+
+  if (isLoading) return <Spinner />;
+
   return (
     <Form>
       <FormRow label='Minimum nights/booking'>
         <Input
           type='number'
           id='min-nights'
-          defaultValue='minBookingLength'
+          defaultValue={minBookingLength}
           onBlur={() => {}}
         />
       </FormRow>
@@ -17,7 +31,7 @@ function UpdateSettingsForm() {
         <Input
           type='number'
           id='max-nights'
-          defaultValue='maxBookingLength'
+          defaultValue={maxBookingLength}
           onBlur={() => {}}
         />
       </FormRow>
@@ -25,7 +39,7 @@ function UpdateSettingsForm() {
         <Input
           type='number'
           id='max-guests'
-          defaultValue='maxGuestsPerBooking'
+          defaultValue={maxGuestsPerBooking}
           onBlur={() => {}}
         />
       </FormRow>
@@ -33,7 +47,7 @@ function UpdateSettingsForm() {
         <Input
           type='number'
           id='breakfast-price'
-          defaultValue='breakfastPrice'
+          defaultValue={breakfastPrice}
           onBlur={() => {}}
         />
       </FormRow>
