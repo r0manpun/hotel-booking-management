@@ -4,3 +4,5 @@ export function formatCurrency(value, currencyValue = 'USD') {
     currency: currencyValue,
   }).format(value);
 }
+
+

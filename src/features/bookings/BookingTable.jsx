@@ -19,24 +19,26 @@ const fakeBookings = [
     created_at: fromToday(-20, true),
     startDate: fromToday(0),
     endDate: fromToday(7),
-    cabinId: 1,
-    guestId: 2,
+    cabins: { name: '001' },
+    guests: { fullName: 'John', email: 'john@test.com' },
     hasBreakfast: true,
     observations:
       'I have a gluten allergy and would like to request a gluten-free breakfast.',
     isPaid: false,
     numGuests: 1,
+    id: 1,
   },
   {
     created_at: fromToday(-33, true),
     startDate: fromToday(-23),
     endDate: fromToday(-13),
-    cabinId: 1,
-    guestId: 3,
+    cabins: { name: '002' },
+    guests: { fullName: 'Luffy', email: 'luffy@test.com' },
     hasBreakfast: true,
     observations: '',
     isPaid: true,
     numGuests: 2,
+    id: 2,
   },
 ];
 
@@ -45,7 +47,7 @@ function BookingTable() {
 
   if (isLoading) return <Spinner />;
 
-  let testbooking = bookings === 'undefined' ? fakeBookings : bookings;
+  let testbooking = bookings !== 'undefined' ? fakeBookings : bookings;
 
   return (
     <Menus>

@@ -16,7 +16,7 @@ const Error = styled.div`
   color: var(--color-red-500);
 `;
 
-function FormVertical({ children, label, error }) {
+function FormRowVertical({ children, label, error }) {
   return (
     <StyledFormRow>
       {label && <Label htmlFor={children.props?.id}>{label}</Label>}
@@ -26,4 +26,4 @@ function FormVertical({ children, label, error }) {
   );
 }
 
-export default FormVertical;
+export default FormRowVertical;
