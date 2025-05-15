@@ -47,7 +47,7 @@ function BookingTable() {
 
   if (isLoading) return <Spinner />;
 
-  let testbooking = bookings !== 'undefined' ? fakeBookings : bookings;
+  let testbooking = bookings === 'undefined' ? fakeBookings : bookings;
 
   return (
     <Menus>
