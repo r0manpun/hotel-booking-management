@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { HiEllipsisVertical } from 'react-icons/hi2';
 import styled from 'styled-components';
 
@@ -106,13 +107,22 @@ function List({ id, children }) {
 
   if (openId !== id) return null;
 
-  return <StyledList position={position}>{children}</StyledList>;
+  return createPortal(
+    <StyledList position={position}>{children}</StyledList>,
+    document.body
+  );
 }
 
-function Button({ children, icon }) {
+function Button({ children, onClick, icon }) {
+  const { close } = useContext(MenuContext);
+
+  function handleClick() {
+    onClick?.();
+    close();
+  }
   return (
     <li>
-      <StyledButton>
+      <StyledButton onClick={handleClick}>
         {icon}
         <span>{children}</span>
       </StyledButton>

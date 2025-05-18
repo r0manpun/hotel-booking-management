@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import Table from '../../components/Table';
 import Menus from '../../components/Menus';
 import Modal from '../../components/Modal';
-import CabinEditForm from './CabinEditForm';
 
 import { formatCurrency } from '../../utils/helper';
+import CreateCabinForm from './CreateCabinForm';
 
 const Img = styled.img`
   display: block;
@@ -68,18 +68,25 @@ function CabinRow({ cabin }) {
       <Modal>
         <Menus.Menu>
           <Menus.Toogle id={cabinId} />
+
           <Menus.List id={cabinId}>
             <Menus.Button icon={<HiSquare2Stack />}>Duplicate</Menus.Button>
+
             <Modal.Open opens='edit-form'>
               <Menus.Button icon={<HiPencil />}>Edit</Menus.Button>
             </Modal.Open>
+
             <Modal.Open opens='confirm-delete'>
               <Menus.Button icon={<HiTrash />}>Delete</Menus.Button>
             </Modal.Open>
           </Menus.List>
 
           <Modal.Window name='edit-form'>
-            <CabinEditForm />
+            <CreateCabinForm />
+          </Modal.Window>
+
+          <Modal.Window name='confirm-delete'>
+            <div>Are you sure you want to delete?</div>
           </Modal.Window>
         </Menus.Menu>
       </Modal>
