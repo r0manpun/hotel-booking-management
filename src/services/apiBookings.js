@@ -12,7 +12,6 @@ export async function getBookings() {
     console.error(error.message);
     throw new Error('Failed to fetch bookings');
   }
-  console.log(data);
 
   return data;
 }

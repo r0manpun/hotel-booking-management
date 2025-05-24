@@ -63,8 +63,6 @@ const GlobalStyles = createGlobalStyle`
       --color-red-500: #E13A37;
       --color-red-700: #FFEBEB;
 
-
-
     }
 
             /* Indigo */

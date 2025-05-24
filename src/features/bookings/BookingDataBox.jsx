@@ -6,8 +6,11 @@ import {
 } from 'react-icons/hi2';
 import { format, formatDistance, isToday, parseISO } from 'date-fns';
 import styled from 'styled-components';
-import { formatCurrency } from '../../utils/helper';
+
 import DataItem from '../../components/DataItem';
+import Flag from '../../components/Flag';
+
+import { formatCurrency } from '../../utils/helper';
 
 const StyledBookingDataBox = styled.section`
   background-color: var(--color-slate-50);
@@ -63,7 +66,9 @@ const Guest = styled.div`
   }
 `;
 
-const Price = styled.div`
+const Price = styled.div.withConfig({
+  shouldForwardProp: (props) => props !== 'isPaid',
+})`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -71,10 +76,10 @@ const Price = styled.div`
   margin-top: 2.4rem;
   border-radius: var(--border-radius-sm);
 
-  background-color: ${({ isPaid }) =>
-    isPaid ? 'var(--color-green-50)' : 'var(--color-yellow-100)'};
-  color: ${({ isPaid }) =>
-    isPaid ? 'var(--color-green-700)' : 'var(--color-yellow-700)'};
+  background-color: ${(props) =>
+    props.isPaid ? 'var(--color-green-100)' : 'var(--color-yellow-100)'};
+  color: ${(props) =>
+    props.isPaid ? 'var(--color-green-700)' : 'var(--color-yellow-700)'};
 
   */ & p:last-child {
     text-transform: uppercase;
@@ -125,7 +130,7 @@ function BookingDataBox({ booking }) {
         <div>
           <HiOutlineHomeModern />
           <p>
-            X nights in Cabin <span>{cabinName}</span>
+            {numNights} nights in Cabin <span>{cabinName}</span>
           </p>
         </div>
         {startDate && (
@@ -145,8 +150,12 @@ function BookingDataBox({ booking }) {
 
       <Section>
         <Guest>
-          {/* <img  alt={`Flag of country`} /> */}
-          <span>🇪🇸</span>
+          {countryFlag && (
+            <Flag
+              src={countryFlag}
+              alt={`Flag of ${country}`}
+            />
+          )}
           <p>
             {guestFullName}
             {numGuests > 1 ? `+ ${numGuests - 1} guests` : ''}
@@ -154,21 +163,22 @@ function BookingDataBox({ booking }) {
           <span>&bull;</span>
           <p>{email}</p>
           <span>&bull;</span>
-          <p>National ID 12331{nationalID}</p>
+          <p>National ID {nationalID}</p>
         </Guest>
 
         <DataItem
           icon={<HiOutlineChatBubbleBottomCenterText />}
           label={'Observations: '}>
-          {observations}
+          {observations !== '' ? observations : 'No observations yet.'}
         </DataItem>
+
         <DataItem
           icon={<HiOutlineCheckCircle />}
           label={'Breakfast included?'}>
           {hasBreakfast ? 'Yes' : 'No'}
         </DataItem>
 
-        <Price>
+        <Price isPaid={isPaid}>
           <DataItem
             icon={<HiOutlineCurrencyDollar />}
             label={'Total price: '}>
