@@ -1,14 +1,15 @@
-import { useParams } from 'react-router-dom';
+import { add } from 'date-fns';
 import styled from 'styled-components';
 
 import Heading from '../../components/Heading';
 import Row from '../../components/Row';
 import Tag from '../../components/Tag';
 import ButtonText from '../../components/ButtonText';
-import { add } from 'date-fns';
 import BookingDataBox from './BookingDataBox';
-import useBooking from './useBooking';
 import Spinner from '../../components/Spinner';
+
+import { useBooking } from './useBooking';
+import { useMoveBack } from '../../hooks/useMoveBack';
 
 const HeadingGroup = styled.div`
   display: flex;
@@ -41,15 +42,17 @@ const booking = {
 function BookingDetails() {
   const { booking, isLoading } = useBooking();
 
+  const moveBack = useMoveBack();
+
+  if (isLoading) return <Spinner />;
+
+  const { status, id: bookingId } = booking;
+
   const statusToTagName = {
     unconfirmed: 'sky',
     'checked-in': 'green',
     'checked-out': 'silver',
   };
-
-  if (isLoading) return <Spinner />;
-
-  const { status, id: bookingId } = booking;
 
   return (
     <>
@@ -58,7 +61,7 @@ function BookingDetails() {
           <Heading as='h4'>Booking #{bookingId}</Heading>
           <Tag type={statusToTagName[status]}>{status}</Tag>
         </HeadingGroup>
-        <ButtonText>&larr; Back</ButtonText>
+        <ButtonText onClick={moveBack}>&larr; Back</ButtonText>
       </Row>
 
       <BookingDataBox booking={booking} />

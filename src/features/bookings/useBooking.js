@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { getBooking } from '../../services/apiBookings';
 
-export default function useBooking() {
+export function useBooking() {
   const { bookingId } = useParams();
 
   const {

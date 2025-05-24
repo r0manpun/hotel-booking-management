@@ -8,10 +8,11 @@ const ButtonText = styled.button`
   border: none;
   transition: all 0.3s;
   border-radius: var(--border-radius-sm);
+  padding: 1rem 2rem;
 
   &:hover,
   &:active {
-    color: var(--color-brand-700);
+    color: var(--color-brand-800);
   }
 `;
 
