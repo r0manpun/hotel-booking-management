@@ -7,6 +7,8 @@ import Tag from '../../components/Tag';
 import ButtonText from '../../components/ButtonText';
 import { add } from 'date-fns';
 import BookingDataBox from './BookingDataBox';
+import useBooking from './useBooking';
+import Spinner from '../../components/Spinner';
 
 const HeadingGroup = styled.div`
   display: flex;
@@ -37,7 +39,7 @@ const booking = {
 };
 
 function BookingDetails() {
-  const { bookingId } = useParams();
+  const { booking, isLoading } = useBooking();
 
   const statusToTagName = {
     unconfirmed: 'sky',
@@ -45,12 +47,16 @@ function BookingDetails() {
     'checked-out': 'silver',
   };
 
+  if (isLoading) return <Spinner />;
+
+  const { status, id: bookingId } = booking;
+
   return (
     <>
       <Row type='horizontal'>
         <HeadingGroup>
           <Heading as='h4'>Booking #{bookingId}</Heading>
-          <Tag type={statusToTagName[booking.status]}>{booking.status}</Tag>
+          <Tag type={statusToTagName[status]}>{status}</Tag>
         </HeadingGroup>
         <ButtonText>&larr; Back</ButtonText>
       </Row>

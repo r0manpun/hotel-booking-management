@@ -67,8 +67,6 @@ function BookingTable() {
 
   if (isLoading) return <Spinner />;
 
-  let testbooking = bookings === 'undefined' ? fakeBookings : bookings;
-
   return (
     <Menus>
       <Table columns='0.6fr 2fr 2.2fr 1fr 1fr 0.6fr'>
@@ -81,7 +79,7 @@ function BookingTable() {
           <div></div>
         </Table.Header>
         <Table.Body
-          data={fakeBookings}
+          data={bookings || fakeBookings}
           render={(booking) => (
             <BookingRow
               key={booking?.id}
