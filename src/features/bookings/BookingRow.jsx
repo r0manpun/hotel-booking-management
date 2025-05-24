@@ -12,6 +12,7 @@ import {
   HiTrash,
 } from 'react-icons/hi2';
 import Modal from '../../components/Modal';
+import { useNavigate } from 'react-router-dom';
 
 const Cabin = styled.div`
   font-size: 1.6rem;
@@ -49,6 +50,8 @@ function BookingRow({
     cabins: { name: cabinName },
   },
 }) {
+  const navigate = useNavigate();
+
   const statusToTagName = {
     unconfirmed: 'sky',
     'checked-in': 'green',
@@ -78,7 +81,11 @@ function BookingRow({
           <Menus.Menu>
             <Menus.Toogle id={bookingId} />
             <Menus.List id={bookingId}>
-              <Menus.Button icon={<HiEye />}>See Details</Menus.Button>
+              <Menus.Button
+                icon={<HiEye />}
+                onClick={() => navigate(`/bookings/${bookingId}`)}>
+                See Details
+              </Menus.Button>
 
               <Menus.Button icon={<HiArrowDownOnSquare />}>
                 Check in

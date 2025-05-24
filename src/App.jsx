@@ -56,7 +56,7 @@ function App() {
                 element={<Bookings />}
               />
               <Route
-                path='Booking'
+                path='bookings/:bookingId'
                 element={<Booking />}
               />
               <Route
@@ -64,7 +64,7 @@ function App() {
                 element={<Cabins />}
               />
               <Route
-                path='checkin'
+                path='checkin/:bookingId'
                 element={<Checkin />}
               />
               <Route
