@@ -4,6 +4,14 @@ import Table from '../../components/Table';
 
 import { formatCurrency } from '../../utils/helper';
 import Tag from '../../components/Tag';
+import Menus from '../../components/Menus';
+import {
+  HiArrowDownOnSquare,
+  HiArrowUpOnSquare,
+  HiEye,
+  HiTrash,
+} from 'react-icons/hi2';
+import Modal from '../../components/Modal';
 
 const Cabin = styled.div`
   font-size: 1.6rem;
@@ -48,22 +56,50 @@ function BookingRow({
   };
 
   return (
-    <Table.Row>
-      <Cabin>{cabinName}</Cabin>
+    <>
+      {' '}
+      <Table.Row>
+        <Cabin>{cabinName}</Cabin>
 
-      <Stacked>
-        <span>{guestName}</span>
-        <span>{email}</span>
-      </Stacked>
+        <Stacked>
+          <span>{guestName}</span>
+          <span>{email}</span>
+        </Stacked>
 
-      <Stacked>
-        <span>{startDate}</span>
-      </Stacked>
+        <Stacked>
+          <span>{startDate}</span>
+        </Stacked>
 
-      <Tag type={statusToTagName[status]}>{status.replace('-', ' ')}</Tag>
+        <Tag type={statusToTagName[status]}>{status.replace('-', ' ')}</Tag>
 
-      <Amount>{formatCurrency(totalPrice)}</Amount>
-    </Table.Row>
+        <Amount>{formatCurrency(totalPrice)}</Amount>
+
+        <Modal>
+          <Menus.Menu>
+            <Menus.Toogle id={bookingId} />
+            <Menus.List id={bookingId}>
+              <Menus.Button icon={<HiEye />}>See Details</Menus.Button>
+
+              <Menus.Button icon={<HiArrowDownOnSquare />}>
+                Check in
+              </Menus.Button>
+
+              <Menus.Button icon={<HiArrowUpOnSquare />}>
+                Check out
+              </Menus.Button>
+
+              <Modal.Open opens='delete'>
+                <Menus.Button icon={<HiTrash />}>Delete Booking</Menus.Button>
+              </Modal.Open>
+
+              <Modal.Window name='delete'>
+                <div>Are you sure you want to delete #{bookingId}?</div>
+              </Modal.Window>
+            </Menus.List>
+          </Menus.Menu>
+        </Modal>
+      </Table.Row>
+    </>
   );
 }
 
