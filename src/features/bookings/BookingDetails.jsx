@@ -5,11 +5,15 @@ import Heading from '../../components/Heading';
 import Row from '../../components/Row';
 import Tag from '../../components/Tag';
 import ButtonText from '../../components/ButtonText';
-import BookingDataBox from './BookingDataBox';
 import Spinner from '../../components/Spinner';
+import Modal from '../../components/Modal';
+import Button from '../../components/Button';
+import ButtonGroup from '../../ui/ButtonGroup';
+import BookingDataBox from './BookingDataBox';
 
 import { useBooking } from './useBooking';
 import { useMoveBack } from '../../hooks/useMoveBack';
+import ConfirmDelete from '../../components/ConfirmDelete';
 
 const HeadingGroup = styled.div`
   display: flex;
@@ -65,6 +69,22 @@ function BookingDetails() {
       </Row>
 
       <BookingDataBox booking={booking} />
+
+      <ButtonGroup>
+        <Modal>
+          <Modal.Open opens='delete'>
+            <Button variation='danger'>Delete</Button>
+          </Modal.Open>
+
+          <Modal.Window name='delete'>
+            <ConfirmDelete
+              resourceName='booking'
+              onConfirm={() => {}}
+            />
+          </Modal.Window>
+        </Modal>
+        <Button>Back</Button>
+      </ButtonGroup>
     </>
   );
 }

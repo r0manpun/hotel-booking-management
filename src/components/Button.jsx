@@ -29,7 +29,14 @@ const variations = {
   secondary: css`
     background-color: var(--color-brand-600);
   `,
-  danger: css``,
+  danger: css`
+    color: var(--color-red-100);
+    background-color: var(--color-red-700);
+
+    &:hover {
+      background-color: var(--color-brand-800);
+    }
+  `,
 };
 
 const Button = styled.button
