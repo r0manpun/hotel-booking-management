@@ -59,11 +59,12 @@ const GlobalStyles = createGlobalStyle`
       --color-silver-100: #374151;
       --color-silver-700: #f3f4f6;
 
-      --color-red-100: #4D1314;
-      --color-red-500: #E13A37;
-      --color-red-700: #FFEBEB;
 
     }
+
+      --color-red-700: #991b1b;
+      --color-red-500: #b91c1c;
+      --color-red-100: #fee2e2;
 
             /* Indigo */
             /* --color-brand-50: #F1F1FB;

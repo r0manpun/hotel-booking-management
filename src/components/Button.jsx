@@ -27,14 +27,20 @@ const variations = {
     }
   `,
   secondary: css`
-    background-color: var(--color-brand-600);
+    color: var(--color-brand-100);
+    background-color: var(--color-slate-50);
+    border: 1px solid var(--color-slate-200);
+
+    &:hover {
+      background-color: var(--color-slate-0);
+    }
   `,
   danger: css`
     color: var(--color-red-100);
-    background-color: var(--color-red-700);
+    background-color: var(--color-red-500);
 
     &:hover {
-      background-color: var(--color-brand-800);
+      background-color: var(--color-red-700);
     }
   `,
 };
