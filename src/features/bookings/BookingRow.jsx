@@ -87,7 +87,9 @@ function BookingRow({
                 See Details
               </Menus.Button>
 
-              <Menus.Button icon={<HiArrowDownOnSquare />}>
+              <Menus.Button
+                icon={<HiArrowDownOnSquare />}
+                onClick={() => navigate(`/checkin/${bookingId}`)}>
                 Check in
               </Menus.Button>
 

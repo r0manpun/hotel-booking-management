@@ -10,10 +10,10 @@ import Modal from '../../components/Modal';
 import Button from '../../components/Button';
 import ButtonGroup from '../../ui/ButtonGroup';
 import BookingDataBox from './BookingDataBox';
+import ConfirmDelete from '../../components/ConfirmDelete';
 
 import { useBooking } from './useBooking';
 import { useMoveBack } from '../../hooks/useMoveBack';
-import ConfirmDelete from '../../components/ConfirmDelete';
 
 const HeadingGroup = styled.div`
   display: flex;
