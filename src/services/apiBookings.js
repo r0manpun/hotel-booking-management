@@ -4,7 +4,7 @@ export async function getBookings() {
   const { data, error } = await supabase
     .from('bookings')
     .select(
-      'id,created_at,startDate,endDate,numNights,numGuests,totalPrice,status,guests(email,fullName),cabins(name)',
+      'id,created_at,startDate,endDate,numNights,numGuests,totalPrice,status,isPaid,guests(email,fullName),cabins(name)',
       { count: 'exact' }
     );
 

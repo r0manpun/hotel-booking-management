@@ -1,18 +1,19 @@
-import styled from 'styled-components';
-
-import Table from '../../components/Table';
-
-import { formatCurrency } from '../../utils/helper';
-import Tag from '../../components/Tag';
-import Menus from '../../components/Menus';
+import { useNavigate } from 'react-router-dom';
 import {
   HiArrowDownOnSquare,
   HiArrowUpOnSquare,
   HiEye,
   HiTrash,
 } from 'react-icons/hi2';
+import styled from 'styled-components';
+
+import Table from '../../components/Table';
+import Tag from '../../components/Tag';
+import Menus from '../../components/Menus';
 import Modal from '../../components/Modal';
-import { useNavigate } from 'react-router-dom';
+
+import { formatCurrency } from '../../utils/helper';
+import ConfirmDelete from '../../components/ConfirmDelete';
 
 const Cabin = styled.div`
   font-size: 1.6rem;
@@ -36,6 +37,9 @@ const Stacked = styled.div`
 const Amount = styled.div`
   font-weight: 500;
   font-family: 'Sono';
+
+  color: ${(props) =>
+    props.isPaid ? 'var(--color-green-100)' : 'var(--color-red-500)'};
 `;
 
 function BookingRow({
@@ -45,6 +49,7 @@ function BookingRow({
     endDate,
     numNights,
     totalPrice,
+    isPaid,
     status,
     guests: { fullName: guestName, email },
     cabins: { name: cabinName },
@@ -60,7 +65,6 @@ function BookingRow({
 
   return (
     <>
-      {' '}
       <Table.Row>
         <Cabin>{cabinName}</Cabin>
 
@@ -75,7 +79,7 @@ function BookingRow({
 
         <Tag type={statusToTagName[status]}>{status.replace('-', ' ')}</Tag>
 
-        <Amount>{formatCurrency(totalPrice)}</Amount>
+        <Amount isPaid={isPaid}>{formatCurrency(totalPrice)}</Amount>
 
         <Modal>
           <Menus.Menu>
@@ -87,25 +91,32 @@ function BookingRow({
                 See Details
               </Menus.Button>
 
-              <Menus.Button
-                icon={<HiArrowDownOnSquare />}
-                onClick={() => navigate(`/checkin/${bookingId}`)}>
-                Check in
-              </Menus.Button>
+              {status === 'unconfirmed' && (
+                <Menus.Button
+                  icon={<HiArrowDownOnSquare />}
+                  onClick={() => navigate(`/checkin/${bookingId}`)}>
+                  Check in
+                </Menus.Button>
+              )}
 
-              <Menus.Button icon={<HiArrowUpOnSquare />}>
-                Check out
-              </Menus.Button>
+              {status === 'checked-in' && (
+                <Menus.Button icon={<HiArrowUpOnSquare />}>
+                  Check out
+                </Menus.Button>
+              )}
 
               <Modal.Open opens='delete'>
                 <Menus.Button icon={<HiTrash />}>Delete Booking</Menus.Button>
               </Modal.Open>
-
-              <Modal.Window name='delete'>
-                <div>Are you sure you want to delete #{bookingId}?</div>
-              </Modal.Window>
             </Menus.List>
           </Menus.Menu>
+
+          <Modal.Window name='delete'>
+            <ConfirmDelete
+              resourceName='booking'
+              onConfirm={() => {}}
+            />
+          </Modal.Window>
         </Modal>
       </Table.Row>
     </>
