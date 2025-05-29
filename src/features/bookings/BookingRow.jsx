@@ -11,9 +11,10 @@ import Table from '../../components/Table';
 import Tag from '../../components/Tag';
 import Menus from '../../components/Menus';
 import Modal from '../../components/Modal';
+import ConfirmDelete from '../../components/ConfirmDelete';
 
 import { formatCurrency } from '../../utils/helper';
-import ConfirmDelete from '../../components/ConfirmDelete';
+import { useCheckOut } from '../check-in-out/useCheckOut';
 
 const Cabin = styled.div`
   font-size: 1.6rem;
@@ -59,6 +60,8 @@ function BookingRow({
 }) {
   const navigate = useNavigate();
 
+  const { checkOut, isCheckingOut } = useCheckOut();
+
   const statusToTagName = {
     unconfirmed: 'sky',
     'checked-in': 'green',
@@ -102,7 +105,10 @@ function BookingRow({
               )}
 
               {status === 'checked-in' && (
-                <Menus.Button icon={<HiArrowUpOnSquare />}>
+                <Menus.Button
+                  icon={<HiArrowUpOnSquare />}
+                  onClick={() => checkOut(bookingId)}
+                  disabled={isCheckingOut}>
                   Check out
                 </Menus.Button>
               )}

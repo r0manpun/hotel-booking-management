@@ -11,6 +11,7 @@ import Button from '../../components/Button';
 import ButtonGroup from '../../ui/ButtonGroup';
 import BookingDataBox from './BookingDataBox';
 import ConfirmDelete from '../../components/ConfirmDelete';
+import CheckOutButton from '../check-in-out/CheckOutButton';
 
 import { useBooking } from './useBooking';
 import { useMoveBack } from '../../hooks/useMoveBack';
@@ -71,6 +72,7 @@ function BookingDetails() {
       <BookingDataBox booking={booking} />
 
       <ButtonGroup>
+        {status === 'checked-in' && <CheckOutButton bookingId={bookingId}/>}
         <Modal>
           <Modal.Open opens='delete'>
             <Button variation='danger'>Delete</Button>
