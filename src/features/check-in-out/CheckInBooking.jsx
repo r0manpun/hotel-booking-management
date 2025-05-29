@@ -15,7 +15,6 @@ import { useMoveBack } from '../../hooks/useMoveBack';
 import { formatCurrency } from '../../utils/helper';
 import { useSettings } from '../settings/useSettings';
 import { useCheckin } from './useCheckin';
-import { updateBooking } from '../../services/apiBookings';
 
 const Box = styled.div`
   background-color: var(--color-slate-50);

@@ -34,7 +34,9 @@ const Stacked = styled.div`
   }
 `;
 
-const Amount = styled.div`
+const Amount = styled.div.withConfig({
+  shouldForwardProp: (props) => props !== 'isPaid',
+})`
   font-weight: 500;
   font-family: 'Sono';
 

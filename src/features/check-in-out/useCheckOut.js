@@ -3,16 +3,14 @@ import { useNavigate } from 'react-router-dom';
 
 import { updateBooking } from '../../services/apiBookings';
 
-export function useCheckin() {
+export function useCheckOut() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const { mutate: checkIn, isPending: isCheckingIn } = useMutation({
-    mutationFn: ({ bookingId, breakfast }) =>
+  const { mutate: checkOut, isPending: isCheckingOut } = useMutation({
+    mutationFn: (bookingId) =>
       updateBooking(bookingId, {
-        status: 'checked-in',
-        isPaid: true,
-        ...breakfast,
+        status: 'checked-out',
       }),
     onSuccess: () => {
       queryClient.invalidateQueries({ active: true });
@@ -20,5 +18,5 @@ export function useCheckin() {
     },
   });
 
-  return { checkIn, isCheckingIn };
+  return { checkOut, isCheckingOut };
 }
