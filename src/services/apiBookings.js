@@ -2,13 +2,18 @@ import supabase from './supabase';
 
 import { PAGE_SIZE } from '../utils/constants';
 
-export async function getBookings({ page }) {
+export async function getBookings({ filter, page }) {
   let query = supabase
     .from('bookings')
     .select(
       'id,created_at,startDate,endDate,numNights,numGuests,totalPrice,status,isPaid,guests(email,fullName),cabins(name)',
       { count: 'exact' }
     );
+
+  // FILTER
+  if (filter) {
+    query = query.eq(filter.field, filter.value);
+  }
 
   // PAGINATION
   if (page) {
