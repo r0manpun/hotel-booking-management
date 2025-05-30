@@ -1,7 +1,7 @@
 import supabase from './supabase';
 
 export async function getBookings() {
-  const { data, error } = await supabase
+  const { data, error, count } = await supabase
     .from('bookings')
     .select(
       'id,created_at,startDate,endDate,numNights,numGuests,totalPrice,status,isPaid,guests(email,fullName),cabins(name)',
@@ -13,7 +13,7 @@ export async function getBookings() {
     throw new Error('Failed to fetch bookings');
   }
 
-  return data;
+  return { data, count };
 }
 
 export async function getBooking(id) {

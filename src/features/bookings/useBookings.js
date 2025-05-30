@@ -4,7 +4,7 @@ import { getBookings } from '../../services/apiBookings';
 
 export function useBookings() {
   const {
-    data: bookings,
+    data: { data: bookings, count },
     isLoading,
     error,
   } = useQuery({
@@ -16,5 +16,6 @@ export function useBookings() {
     bookings,
     isLoading,
     error,
+    count,
   };
 }
