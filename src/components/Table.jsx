@@ -45,7 +45,7 @@ const StyledRow = styled(CommonRow)`
 `;
 
 const Footer = styled.footer`
-  background-color: var(--color-slate-50);
+  background-color: var(--color-slate-0);
   display: flex;
   justify-content: center;
   padding: 1.2rem;
