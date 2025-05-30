@@ -6,6 +6,7 @@ import BookingRow from './BookingRow';
 import Spinner from '../../components/Spinner';
 
 import { useBookings } from './useBookings';
+import Pagination from '../../ui/Pagination';
 
 function fromToday(numDays, withTime = false) {
   const date = add(new Date(), { days: numDays });
@@ -87,6 +88,10 @@ function BookingTable() {
             />
           )}
         />
+
+        <Table.Footer>
+          <Pagination />
+        </Table.Footer>
       </Table>
     </Menus>
   );
