@@ -15,6 +15,7 @@ import ConfirmDelete from '../../components/ConfirmDelete';
 
 import { formatCurrency } from '../../utils/helper';
 import { useCheckOut } from '../check-in-out/useCheckOut';
+import { useDeleteBooking } from './useDeleteBooking';
 
 const Cabin = styled.div`
   font-size: 1.6rem;
@@ -61,6 +62,7 @@ function BookingRow({
   const navigate = useNavigate();
 
   const { checkOut, isCheckingOut } = useCheckOut();
+  const { deleteBooking, isDeleting } = useDeleteBooking();
 
   const statusToTagName = {
     unconfirmed: 'sky',
@@ -122,7 +124,8 @@ function BookingRow({
           <Modal.Window name='delete'>
             <ConfirmDelete
               resourceName='booking'
-              onConfirm={() => {}}
+              onConfirm={() => deleteBooking(bookingId)}
+              disabled={isDeleting}
             />
           </Modal.Window>
         </Modal>
