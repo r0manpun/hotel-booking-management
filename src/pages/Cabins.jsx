@@ -1,7 +1,7 @@
 import Row from '../components/Row';
 import CabinTable from '../features/cabins/CabinTable';
 import Heading from '../components/Heading';
-
+import CabinTableOperations from '../features/cabins/CabinTableOperations';
 
 const fakeCabin = [
   {
@@ -31,6 +31,7 @@ function Cabins() {
     <>
       <Row>
         <Heading>All Cabins</Heading>
+        <CabinTableOperations />
       </Row>
       <Row type='vertical'>
         <CabinTable />
