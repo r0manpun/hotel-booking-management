@@ -14,6 +14,7 @@ function SortBy({ options }) {
   return (
     <Select
       options={options}
+      type='white'
       onChange={handleChange}
       value={sortBy}
     />
