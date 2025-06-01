@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import SpinnerMini from './SpinnerMini';
-
 import { useUser } from '../features/authentication/useUser';
 
 const FullPage = styled.div`
@@ -17,7 +16,7 @@ const FullPage = styled.div`
 function ProtectedRoutes({ children }) {
   const navigate = useNavigate();
 
-  const { isLoading, isAuthenticated } = useUser();
+  const { isAuthenticated, isLoading } = useUser();
 
   useEffect(
     function () {

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { useUser } from '../features/authentication/users/useUser';
+import { useUser } from '../features/authentication/useUser';
 
 const StyledUserAvatar = styled.div`
   display: flex;

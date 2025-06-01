@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
-import Form from '../../../components/Form';
-import FormRowVertical from '../../../components/FormRowVertical';
-import Input from '../../../components/Input';
-import Button from '../../../components/Button';
-import SpinnerMini from '../../../components/SpinnerMini';
+import Form from '../../components/Form';
+import FormRowVertical from '../../components/FormRowVertical';
+import Input from '../../components/Input';
+import Button from '../../components/Button';
+import SpinnerMini from '../../components/SpinnerMini';
 
 import { useLogin } from './useLogin';
 

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Logo from '../ui/Logo';
 import Heading from '../components/Heading';
-import LoginForm from '../features/authentication/users/LoginForm';
+import LoginForm from '../features/authentication/LoginForm';
 
 const LoginLayout = styled.div`
   min-height: 100vh;

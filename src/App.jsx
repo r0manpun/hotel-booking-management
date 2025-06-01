@@ -14,6 +14,7 @@ import Login from './pages/Login';
 import PageNotFound from './pages/PageNotFound';
 import AppLayout from './ui/AppLayout';
 import GlobalStyles from './styles/GlobalStyles';
+import ProtectedRoutes from './components/ProtectedRoute';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -33,10 +34,9 @@ function App() {
           <Routes>
             <Route
               element={
-                // <ProtectedRoutes>
-                //   <AppLayout />
-                // </ProtectedRoutes>
-                <AppLayout />
+                <ProtectedRoutes>
+                  <AppLayout />
+                </ProtectedRoutes>
               }>
               <Route
                 index
