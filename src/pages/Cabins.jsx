@@ -24,8 +24,6 @@ const fakeCabin = [
   },
 ];
 
-const fakeCabin2 = [];
-
 function Cabins() {
   return (
     <>
