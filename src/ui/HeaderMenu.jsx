@@ -6,6 +6,7 @@ import {
 import styled from 'styled-components';
 
 import ButtonIcon from '../components/ButtonIcon';
+import Tooltip from '../components/Tooltip';
 
 const StyledHeaderMenu = styled.ul`
   display: flex;
@@ -16,19 +17,25 @@ function HeaderMenu() {
   return (
     <StyledHeaderMenu>
       <li>
-        <ButtonIcon>
-          <HiOutlineUser />
-        </ButtonIcon>
+        <Tooltip text='Account Setting'>
+          <ButtonIcon>
+            <HiOutlineUser />
+          </ButtonIcon>
+        </Tooltip>
       </li>
       <li>
-        <ButtonIcon>
-          <HiOutlineSun />
-        </ButtonIcon>
+        <Tooltip text='Toggle Dark/Light Mode'>
+          <ButtonIcon>
+            <HiOutlineSun />
+          </ButtonIcon>
+        </Tooltip>
       </li>
       <li>
-        <ButtonIcon>
-          <HiArrowRightOnRectangle />
-        </ButtonIcon>
+        <Tooltip text='Logout'>
+          <ButtonIcon>
+            <HiArrowRightOnRectangle />
+          </ButtonIcon>
+        </Tooltip>
       </li>
     </StyledHeaderMenu>
   );
