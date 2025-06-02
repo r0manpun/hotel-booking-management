@@ -8,7 +8,7 @@ const StyledModal = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 3.2rem 4.8rem;
+  padding: 3.2rem 4rem;
   background-color: var(--color-slate-50);
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-lg);
@@ -49,7 +49,7 @@ const Button = styled.button`
     /* fill: var(--color-grey-500);
     stroke: var(--color-grey-500); */
 
-    color: var(--color-grey-500);
+    color: var(--color-grey-400);
   }
 `;
 

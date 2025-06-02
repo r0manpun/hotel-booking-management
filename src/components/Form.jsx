@@ -1,14 +1,18 @@
 import styled, { css } from 'styled-components';
 
-const Form = styled.form.attrs((props) => ({ type: props.type || 'regular' }))`
+const Form = styled.form
+  .withConfig({
+    shouldForwardProp: (props) => !props.includes('type'),
+  })
+  .attrs((props) => ({ type: props.type || 'regular' }))`
   ${(props) =>
     props.type === 'regular' &&
     css`
       padding: 2.4rem 4rem;
 
       background-color: var(--color-slate-50);
+      /* border: 1px solid var(--color-slate-100); */
       border-radius: var(--border-radius-md);
-      border: 1px solid var(--color-slate-100);
     `}
   ${(props) =>
     props.type === 'modal' &&
@@ -16,7 +20,7 @@ const Form = styled.form.attrs((props) => ({ type: props.type || 'regular' }))`
       width: 80rem;
     `}
 
-    overflow: hidden;
+  overflow: hidden;
   font-size: 1.4rem;
 `;
 

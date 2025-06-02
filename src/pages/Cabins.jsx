@@ -2,6 +2,7 @@ import Row from '../components/Row';
 import CabinTable from '../features/cabins/CabinTable';
 import Heading from '../components/Heading';
 import CabinTableOperations from '../features/cabins/CabinTableOperations';
+import AddCabin from '../features/cabins/AddCabin';
 
 const fakeCabin = [
   {
@@ -33,6 +34,7 @@ function Cabins() {
       </Row>
       <Row type='vertical'>
         <CabinTable />
+        <AddCabin />
       </Row>
     </>
   );
