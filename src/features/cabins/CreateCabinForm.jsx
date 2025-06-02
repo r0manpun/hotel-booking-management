@@ -43,6 +43,7 @@ function CreateCabinForm({ onCloseModal }) {
           {...register('name', { required: 'This field is required!' })}
         />
       </FormRow>
+
       <FormRow
         label='Maximum capacity'
         error={errors?.maxCapacity?.message}>
@@ -58,6 +59,7 @@ function CreateCabinForm({ onCloseModal }) {
           })}
         />
       </FormRow>
+
       <FormRow
         label='Regular price'
         error={errors?.regularPrice?.message}>
@@ -73,6 +75,7 @@ function CreateCabinForm({ onCloseModal }) {
           })}
         />
       </FormRow>
+
       <FormRow
         label='Discount'
         error={errors?.discount?.message}>
@@ -121,7 +124,7 @@ function CreateCabinForm({ onCloseModal }) {
         <Button
           variation='primary'
           size='medium'>
-          Edit cabin
+          Add new cabin
         </Button>
       </FormRow>
     </Form>
