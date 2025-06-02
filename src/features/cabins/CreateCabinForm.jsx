@@ -7,13 +7,27 @@ import FormRow from '../../components/FormRow';
 import Input from '../../components/Input';
 import TextArea from '../../components/TextArea';
 
+import { useCreateCabin } from './useCreateCabin';
+
 function CreateCabinForm({ onCloseModal }) {
+  const { createCabin, isCreating } = useCreateCabin();
+
+  const isWorking = isCreating;
+
   const { register, handleSubmit, reset, getValues, formState } = useForm();
 
   const { errors } = formState;
 
   function onSubmit(data) {
-    console.log(data);
+    createCabin(
+      { ...data, image: data.image[0] },
+      {
+        onSuccess: () => {
+          reset();
+          onCloseModal?.();
+        },
+      }
+    );
   }
 
   return (
