@@ -69,8 +69,6 @@ function CabinRow({ cabin }) {
     });
   }
 
-  if (isDeleting) return <Spinner />;
-
   return (
     <Table.Row>
       <Img
