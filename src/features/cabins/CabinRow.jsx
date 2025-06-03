@@ -8,6 +8,9 @@ import CreateCabinForm from './CreateCabinForm';
 
 import { formatCurrency } from '../../utils/helper';
 import { useCreateCabin } from './useCreateCabin';
+import { useDeleteCabin } from './useDeleteCabin';
+import Spinner from '../../components/Spinner';
+import ConfirmDelete from '../../components/ConfirmDelete';
 
 const Img = styled.img`
   display: block;
@@ -43,6 +46,7 @@ const Discount = styled.div`
 
 function CabinRow({ cabin }) {
   const { createCabin } = useCreateCabin();
+  const { deleteCabin, isDeleting } = useDeleteCabin();
 
   const {
     id: cabinId,
@@ -64,6 +68,8 @@ function CabinRow({ cabin }) {
       description,
     });
   }
+
+  if (isDeleting) return <Spinner />;
 
   return (
     <Table.Row>
@@ -105,7 +111,10 @@ function CabinRow({ cabin }) {
           </Modal.Window>
 
           <Modal.Window name='confirm-delete'>
-            <div>Are you sure you want to delete?</div>
+            <ConfirmDelete
+              resourceName='cabin'
+              onConfirm={() => deleteCabin(cabinId)}
+            />
           </Modal.Window>
         </Menus.Menu>
       </Modal>
