@@ -8,26 +8,48 @@ import Input from '../../components/Input';
 import TextArea from '../../components/TextArea';
 
 import { useCreateCabin } from './useCreateCabin';
+import { useUpdateCabin } from './useUpdateCabin';
 
-function CreateCabinForm({ onCloseModal }) {
+function CreateCabinForm({ onCloseModal, cabinToEdit = {} }) {
   const { createCabin, isCreating } = useCreateCabin();
+  const { updateCabin, isEditing } = useUpdateCabin();
 
-  const isWorking = isCreating;
+  const isWorking = isCreating || isEditing;
 
-  const { register, handleSubmit, reset, getValues, formState } = useForm();
+  const { id: editId, ...editValues } = cabinToEdit;
+  const isEditSession = Boolean(editId);
+  console.log(isEditSession);
+
+  const { register, handleSubmit, reset, getValues, formState } = useForm({
+    defaultValues: isEditSession ? editValues : {},
+  });
 
   const { errors } = formState;
 
   function onSubmit(data) {
-    createCabin(
-      { ...data, image: data.image[0] },
-      {
-        onSuccess: () => {
-          reset();
-          onCloseModal?.();
-        },
-      }
-    );
+    const image = typeof data.image === 'string' ? data.image : data.image[0];
+    console.log(image);
+
+    if (isEditSession) {
+      updateCabin(
+        { newCabinData: { ...data, image }, id: editId },
+        {
+          onSuccess: () => {
+            reset();
+            onCloseModal?.();
+          },
+        }
+      );
+    } else
+      createCabin(
+        { ...data, image: data.image[0] },
+        {
+          onSuccess: () => {
+            reset();
+            onCloseModal?.();
+          },
+        }
+      );
   }
 
   return (
@@ -102,13 +124,15 @@ function CreateCabinForm({ onCloseModal }) {
         />
       </FormRow>
 
+      {/* "https://srzjfanawhtycbopydcw.supabase.co/storage/v1/object/public/cabin-images//0.5692542092959673-IMG_0405.jpg" */}
+
       <FormRow label='Cabin photo'>
         <FileInput
           type='file'
           id='image'
           accept='image/*'
           {...register('image', {
-            required: 'This field is required!',
+            required: isEditSession ? false : 'This field is required!',
           })}
         />
       </FormRow>
@@ -123,8 +147,9 @@ function CreateCabinForm({ onCloseModal }) {
         </Button>
         <Button
           variation='primary'
-          size='medium'>
-          Add new cabin
+          size='medium'
+          disabled={isWorking}>
+          {isEditSession ? 'Edit cabin' : 'Add new cabin'}
         </Button>
       </FormRow>
     </Form>
