@@ -4,9 +4,10 @@ import styled from 'styled-components';
 import Table from '../../components/Table';
 import Menus from '../../components/Menus';
 import Modal from '../../components/Modal';
+import CreateCabinForm from './CreateCabinForm';
 
 import { formatCurrency } from '../../utils/helper';
-import CreateCabinForm from './CreateCabinForm';
+import { useCreateCabin } from './useCreateCabin';
 
 const Img = styled.img`
   display: block;
@@ -41,6 +42,8 @@ const Discount = styled.div`
 `;
 
 function CabinRow({ cabin }) {
+  const { createCabin } = useCreateCabin();
+
   const {
     id: cabinId,
     name,
@@ -48,7 +51,19 @@ function CabinRow({ cabin }) {
     regularPrice,
     discount,
     image,
+    description,
   } = cabin;
+
+  function handleDuplicate() {
+    createCabin({
+      name: `copy of ${name}`,
+      maxCapacity,
+      regularPrice,
+      discount,
+      image,
+      description,
+    });
+  }
 
   return (
     <Table.Row>
@@ -70,7 +85,11 @@ function CabinRow({ cabin }) {
           <Menus.Toogle id={cabinId} />
 
           <Menus.List id={cabinId}>
-            <Menus.Button icon={<HiSquare2Stack />}>Duplicate</Menus.Button>
+            <Menus.Button
+              icon={<HiSquare2Stack />}
+              onClick={handleDuplicate}>
+              Duplicate
+            </Menus.Button>
 
             <Modal.Open opens='edit-form'>
               <Menus.Button icon={<HiPencil />}>Edit</Menus.Button>
