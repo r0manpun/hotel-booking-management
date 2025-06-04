@@ -1,16 +1,16 @@
 import { HiPencil, HiSquare2Stack, HiTrash } from 'react-icons/hi2';
+import toast from 'react-hot-toast';
 import styled from 'styled-components';
 
 import Table from '../../components/Table';
 import Menus from '../../components/Menus';
 import Modal from '../../components/Modal';
 import CreateCabinForm from './CreateCabinForm';
+import ConfirmDelete from '../../components/ConfirmDelete';
 
 import { formatCurrency } from '../../utils/helper';
 import { useCreateCabin } from './useCreateCabin';
 import { useDeleteCabin } from './useDeleteCabin';
-import Spinner from '../../components/Spinner';
-import ConfirmDelete from '../../components/ConfirmDelete';
 
 const Img = styled.img`
   display: block;
@@ -46,7 +46,7 @@ const Discount = styled.div`
 
 function CabinRow({ cabin }) {
   const { createCabin } = useCreateCabin();
-  const { deleteCabin, isDeleting } = useDeleteCabin();
+  const { deleteCabin } = useDeleteCabin();
 
   const {
     id: cabinId,
@@ -59,14 +59,21 @@ function CabinRow({ cabin }) {
   } = cabin;
 
   function handleDuplicate() {
-    createCabin({
-      name: `copy of ${name}`,
-      maxCapacity,
-      regularPrice,
-      discount,
-      image,
-      description,
-    });
+    createCabin(
+      {
+        name: `copy of ${name}`,
+        maxCapacity,
+        regularPrice,
+        discount,
+        image,
+        description,
+      },
+      {
+        onSuccess: () => {
+          toast.success(`Cabin "${name}" duplicated successfully!`);
+        },
+      }
+    );
   }
 
   return (

@@ -30,7 +30,7 @@ export async function createEditCabin(newCabin, id) {
   // B. EDIT
   if (id) query = query.update({ ...newCabin, image: imagePath }).eq('id', id);
 
-  const { data, error } = await query.select().single();
+  const { data, error } = await query.select('*').single();
 
   if (error) {
     console.error(error);
@@ -57,7 +57,12 @@ export async function createEditCabin(newCabin, id) {
 }
 
 export async function deleteCabin(id) {
-  const { data, error } = await supabase.from('cabins').delete().eq('id', id);
+  const { data, error } = await supabase
+    .from('cabins')
+    .delete()
+    .eq('id', id)
+    .select('*')
+    .single();
 
   if (error) {
     console.error(error);

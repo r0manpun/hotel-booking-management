@@ -58,7 +58,7 @@ export async function updateBooking(id, obj) {
     .from('bookings')
     .update(obj)
     .eq('id', id)
-    .select()
+    .select('*,guests(fullName),cabins(name)')
     .single();
 
   if (error) {
@@ -74,7 +74,7 @@ export async function deleteBooking(id) {
     .from('bookings')
     .delete()
     .eq('id', id)
-    .select()
+    .select('cabins(name),guests(fullName)')
     .single();
 
   if (error) {
