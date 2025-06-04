@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import SpinnerMini from './SpinnerMini';
+import Spinner from './Spinner';
 import { useUser } from '../features/authentication/useUser';
 
 const FullPage = styled.div`
@@ -28,7 +28,7 @@ function ProtectedRoutes({ children }) {
   if (isLoading) {
     return (
       <FullPage>
-        <SpinnerMini />
+        <Spinner />
       </FullPage>
     );
   }
