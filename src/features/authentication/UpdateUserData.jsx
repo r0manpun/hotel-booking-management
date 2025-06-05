@@ -7,6 +7,7 @@ import FormRow from '../../components/FormRow';
 import Input from '../../components/Input';
 
 import { useUser } from './useUser';
+import { useUpdateUser } from './useUpdateUser';
 
 function UpdateUserData() {
   const {
@@ -16,11 +17,32 @@ function UpdateUserData() {
     },
   } = useUser();
 
-  const [fullName, setFullName] = useState(currentFullName || '');
+  const { updateUser, isUpdating } = useUpdateUser();
+
+  const [fullName, setFullName] = useState(currentFullName);
   const [avatar, setAvatar] = useState(null);
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (!fullName) return;
+    updateUser(
+      { fullName, avatar },
+      {
+        onSuccess: () => {
+          setAvatar(null);
+          e.target.reset();
+        },
+      }
+    );
+  }
+
+  function handleCancel() {
+    setFullName(currentFullName);
+    setAvatar(null);
+  }
+
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <FormRow label='Email address'>
         <Input
           id='email'
@@ -35,7 +57,7 @@ function UpdateUserData() {
           type='text'
           value={fullName}
           onChange={(e) => setFullName(e.target.value)}
-
+          disabled={isUpdating}
         />
       </FormRow>
       <FormRow label='Avtar image'>
@@ -44,15 +66,18 @@ function UpdateUserData() {
           type='file'
           accept='image/*'
           onChange={(e) => setAvatar(e.target.files[0])}
+          disabled={isUpdating}
         />
       </FormRow>
       <FormRow>
         <Button
           type='reset'
-          variation='secondary'>
+          variation='secondary'
+          onClick={handleCancel}
+          disabled={isUpdating}>
           Cancel
         </Button>
-        <Button>Update account</Button>
+        <Button disabled={isUpdating}>Update account</Button>
       </FormRow>
     </Form>
   );
