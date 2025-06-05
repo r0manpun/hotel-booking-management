@@ -14,7 +14,12 @@ function SignupForm() {
   const { signUp, isSigning } = useSignup();
 
   function onSubmit({ fullName, email, password }) {
-    signUp({ fullName, email, password }, { onSettled: () => reset() });
+    signUp(
+      { fullName, email, password },
+      {
+        // onSettled: reset,
+      }
+    );
   }
 
   return (
@@ -40,10 +45,6 @@ function SignupForm() {
           disabled={isSigning}
           {...register('email', {
             required: 'Email address is required',
-            pattern: {
-              value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-              message: 'Invalid email address',
-            },
           })}
         />
       </FormRow>

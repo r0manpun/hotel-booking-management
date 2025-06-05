@@ -7,6 +7,7 @@ import styled from 'styled-components';
 
 import ButtonIcon from '../components/ButtonIcon';
 import Tooltip from '../components/Tooltip';
+import { useNavigate } from 'react-router-dom';
 
 const StyledHeaderMenu = styled.ul`
   display: flex;
@@ -14,11 +15,13 @@ const StyledHeaderMenu = styled.ul`
 `;
 
 function HeaderMenu() {
+  const navigate = useNavigate();
+
   return (
     <StyledHeaderMenu>
       <li>
         <Tooltip text='Account Setting'>
-          <ButtonIcon>
+          <ButtonIcon onClick={() => navigate('/account')}>
             <HiOutlineUser />
           </ButtonIcon>
         </Tooltip>
