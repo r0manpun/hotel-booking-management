@@ -9,6 +9,7 @@ import ButtonIcon from '../components/ButtonIcon';
 import Tooltip from '../components/Tooltip';
 import { useNavigate } from 'react-router-dom';
 import Logout from '../features/authentication/Logout';
+import DarkModeToggle from './DarkModeToggle';
 
 const StyledHeaderMenu = styled.ul`
   display: flex;
@@ -29,9 +30,7 @@ function HeaderMenu() {
       </li>
       <li>
         <Tooltip text='Toggle Dark/Light Mode'>
-          <ButtonIcon>
-            <HiOutlineSun />
-          </ButtonIcon>
+          <DarkModeToggle />
         </Tooltip>
       </li>
       <li>
