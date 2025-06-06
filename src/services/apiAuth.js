@@ -69,6 +69,12 @@ export async function updateCurrentUser({ fullName, password, avatar }) {
     });
 
   if (updateError) throw new Error(updateError.message);
-  
+
   return updatedUser;
+}
+
+export async function logout() {
+  const { error } = await supabase.auth.signOut();
+
+  if (error) throw new Error(error.message);
 }

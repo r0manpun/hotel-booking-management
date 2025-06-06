@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import ButtonIcon from '../components/ButtonIcon';
 import Tooltip from '../components/Tooltip';
 import { useNavigate } from 'react-router-dom';
+import Logout from '../features/authentication/Logout';
 
 const StyledHeaderMenu = styled.ul`
   display: flex;
@@ -35,9 +36,7 @@ function HeaderMenu() {
       </li>
       <li>
         <Tooltip text='Logout'>
-          <ButtonIcon>
-            <HiArrowRightOnRectangle />
-          </ButtonIcon>
+          <Logout />
         </Tooltip>
       </li>
     </StyledHeaderMenu>
