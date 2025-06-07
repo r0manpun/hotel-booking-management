@@ -5,8 +5,8 @@ import MainNav from './MainNav';
 
 const StyledAside = styled.aside`
   grid-row: 1/-1;
-  background-color: var(--color-slate-50);
-  color: var(--color-indigo-500);
+  background-color: var(--color-slate-0);
+  border-right: 1px solid var(--color-slate-100);
   display: flex;
   flex-direction: column;
   padding: 3.2rem 2.4rem;

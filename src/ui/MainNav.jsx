@@ -34,7 +34,7 @@ const StyledNavLink = styled(NavLink)`
   &.active:link,
   &.active:visited {
     color: var(--color-slate-800);
-    background-color: var(--color-slate-0);
+    background-color: var(--color-slate-100);
     border-radius: var(--border-radius-sm);
   }
 
@@ -42,13 +42,14 @@ const StyledNavLink = styled(NavLink)`
     width: 2.4rem;
     height: 2.4rem;
     transition: all 0.3s;
+    color: var(--color-slate-400);
   }
 
   &:hover svg,
   &:active svg,
   &.active:link svg,
   &.active:visited svg {
-    color: var(--color-brand-500);
+    color: var(--color-brand-700);
   }
 `;
 

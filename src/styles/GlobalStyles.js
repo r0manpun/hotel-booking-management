@@ -6,35 +6,39 @@ const GlobalStyles = createGlobalStyle`
      /* Base transition for all color changes */
   --transition-duration: 0.5s;
 
- /* , &.light-mode{ /*FOR LIGHT MODE
+ &, &.light-mode{ 
+  /*FOR LIGHT MODE*/
+--color-slate-0: #fff;
+--color-slate-50: #F9F9FA;
+--color-slate-100: #F0F0F3;
+--color-slate-200: #DCDEE5;
+--color-slate-300: #BFC3CD;
+--color-slate-400: #8D94A5;
+--color-slate-500: #646D7E;
+--color-slate-600: #4D5566;
+--color-slate-700: #3C4353;
+--color-slate-800: #272E3F;
+--color-slate-900: #18202F;
 
---color-slate-50: #F9F9FA
---color-slate-100: #F0F0F3
---color-slate-200: #DCDEE5
---color-slate-300: #BFC3CD
---color-slate-400: #8D94A5
---color-slate-500: #646D7E
---color-slate-600: #4D5566
---color-slate-700: #3C4353
---color-slate-800: #272E3F
---color-slate-900: #18202F
+  --color-sky-100: #e0f2fe;
+  --color-sky-700: #0369a1;
+  --color-green-100: #dcfce7;
+  --color-green-700: #15803d;
+  --color-yellow-100: #fef9c3;
+  --color-yellow-700: #a16207;
+  --color-silver-100: #e5e7eb;
+  --color-silver-700: #374151;
+  --color-indigo-100: #e0e7ff;
+  --color-indigo-700: #4338ca;
+
+--backdrop-color:rgba(255, 255, 255, 0.1);
+
+  --image-grayscale: 0;
+  --image-opacity: 100%;
+}
 
 
---color-red-100: #FFEBEB
---color-red-500: #E13A37
---color-red-700: #AC2C2E
---color-yellow-300: #FFCD54
---color-green-400: #64D54B
---color-sky-100: #E4F2FC
---color-sky-500: #47A4D9
-
---color-yellow-50: #FEF9E7
---color-yellow-100: #FFF0C6
-} */
-
-
-
-&, &.dark-mode {
+ &.dark-mode {
       /* FOR DARK MODE */
       --color-slate-0:rgb(16, 23, 36);
       --color-slate-50: #18202F;
@@ -59,24 +63,13 @@ const GlobalStyles = createGlobalStyle`
       --color-silver-100: #374151;
       --color-silver-700: #f3f4f6;
 
-
+--image-grayscale: 10%;
+--image-opacity: 90%;
     }
 
       --color-red-700: #991b1b;
       --color-red-500: #b91c1c;
       --color-red-100: #fee2e2;
-
-            /* Indigo */
-            /* --color-brand-50: #F1F1FB;
---color-brand-100: #E2E2F7;
---color-brand-200: #C5C7EC;
---color-brand-300: #9CA1DE;
---color-brand-400: #6B75CA;
---color-brand-500: #4F57B2;
---color-brand-600: #3F4494;
---color-brand-700: #34387B;
---color-brand-800: #2A2E63;
---color-brand-900: #23244E; */
 
 --color-brand-50: #eef2ff;
     --color-brand-100: #e0e7ff;

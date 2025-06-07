@@ -13,7 +13,7 @@ import Flag from '../../components/Flag';
 import { formatCurrency } from '../../utils/helper';
 
 const StyledBookingDataBox = styled.section`
-  background-color: var(--color-slate-50);
+  background-color: var(--color-slate-0);
   border: 1px solid var(--color-slate-100);
   border-radius: var(--border-radius-md);
 
@@ -25,6 +25,7 @@ const Header = styled.div`
   padding: 2rem 4rem;
   font-size: 1.8rem;
   font-weight: 500;
+  color: var(--color-brand-50);
 
   display: flex;
   align-items: center;

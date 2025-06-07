@@ -1,7 +1,10 @@
 import { HiOutlineSun } from 'react-icons/hi2';
+import { RiMoonClearFill } from 'react-icons/ri';
+import styled from 'styled-components';
 
 import ButtonIcon from '../components/ButtonIcon';
-import styled from 'styled-components';
+
+import { useDarkMode } from '../context/DarkModeContext';
 
 const RotatingIcon = styled.span.withConfig({
   shouldForwardProp: (props) => !props.includes('isDarkMode'),
@@ -13,10 +16,12 @@ const RotatingIcon = styled.span.withConfig({
 `;
 
 function DarkModeToggle() {
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
+
   return (
-    <ButtonIcon>
-      <RotatingIcon isDarkMode={false}>
-        <HiOutlineSun />
+    <ButtonIcon onClick={toggleDarkMode}>
+      <RotatingIcon isDarkMode={isDarkMode}>
+        {isDarkMode ? <HiOutlineSun /> : <RiMoonClearFill />}
       </RotatingIcon>
     </ButtonIcon>
   );

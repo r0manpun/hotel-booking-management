@@ -4,7 +4,7 @@ import UseAvatar from './UserAvatar';
 import HeaderMenu from './HeaderMenu';
 
 const StyledHeader = styled.header`
-  background-color: var(--color-slate-50);
+  background-color: var(--color-slate-0);
   padding: 2rem 4.8rem;
   border-bottom: 1px solid var(--color-slate-100);
 
