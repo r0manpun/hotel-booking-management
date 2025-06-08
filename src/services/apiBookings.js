@@ -89,7 +89,7 @@ export async function deleteBooking(id) {
 export async function getBookingAfterDate(date) {
   const { data, error } = await supabase
     .from('bookings')
-    .select('crated_at,totalPrice,extrasPrice')
+    .select('created_at,totalPrice,extrasPrice')
     .gte('created_at', date)
     .lte('created_at', getToday({ end: true }));
 
