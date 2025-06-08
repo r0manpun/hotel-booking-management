@@ -1,11 +1,16 @@
+import Heading from '../components/Heading';
+import Row from '../components/Row';
+import DashboardLayout from '../features/dashboard/DashboardLayout';
+
 function Dashboard() {
   return (
-    <div>
-      Dashboard
-      <div>
-        <img src='/default-user.jpg' />
-      </div>
-    </div>
+    <>
+      <Row type='horizontal'>
+        <Heading as='h1'>Dashboard</Heading>
+      </Row>
+
+      <DashboardLayout />
+    </>
   );
 }
 export default Dashboard;

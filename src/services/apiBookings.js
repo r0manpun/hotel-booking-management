@@ -1,6 +1,7 @@
 import supabase from './supabase';
 
 import { PAGE_SIZE } from '../utils/constants';
+import { getToday } from '../utils/helper';
 
 export async function getBookings({ filter, sortBy, page }) {
   let query = supabase
@@ -80,6 +81,21 @@ export async function deleteBooking(id) {
   if (error) {
     console.error(error);
     throw new Error('Booking could not be deleted!');
+  }
+
+  return data;
+}
+
+export async function getBookingAfterDate(date) {
+  const { data, error } = await supabase
+    .from('bookings')
+    .select('crated_at,totalPrice,extrasPrice')
+    .gte('created_at', date)
+    .lte('created_at', getToday({ end: true }));
+
+  if (error) {
+    console.error(error);
+    throw new Error('Booking could not be loaded!');
   }
 
   return data;
