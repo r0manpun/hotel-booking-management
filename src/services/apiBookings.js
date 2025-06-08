@@ -100,3 +100,18 @@ export async function getBookingAfterDate(date) {
 
   return data;
 }
+
+export async function getStaysAfterDate(date) {
+  const { data, error } = await supabase
+    .from('bookings')
+    .select('*,guests(fullName)')
+    .gte('startDate', date)
+    .lte('startDate', getToday());
+
+  if (error) {
+    console.error(error);
+    throw new Error('Stays could not be loaded!');
+  }
+
+  return data;
+}
