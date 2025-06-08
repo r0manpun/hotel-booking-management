@@ -134,7 +134,7 @@ export async function getStaysTodayActivity() {
   // Second query: checked-in bookings ending today
   const { data: checkingOutBookings, error: error2 } = await supabase
     .from('bookings')
-    .select('*, guests(fullName,nationality,countryFlag')
+    .select('*,guests(fullName,nationality,countryFlag)')
     .eq('status', 'checked-in')
     .eq('endDate', today);
 
