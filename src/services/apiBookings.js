@@ -115,3 +115,38 @@ export async function getStaysAfterDate(date) {
 
   return data;
 }
+
+export async function getStaysTodayActivity() {
+  const today = getToday();
+
+  // First query: unconfirmed bookings starting today
+  const { data: unconfirmedBooking, error: error1 } = await supabase
+    .from('bookings')
+    .select('*,guests(fullName,nationality,countryFlag)')
+    .eq('status', 'unconfirmed')
+    .eq('startDate', today);
+
+  if (error1) {
+    console.error(error1);
+    throw new Error('Unconfirmed bookings could not get loaded');
+  }
+
+  // Second query: checked-in bookings ending today
+  const { data: checkingOutBookings, error: error2 } = await supabase
+    .from('bookings')
+    .select('*, guests(fullName,nationality,countryFlag')
+    .eq('status', 'checked-in')
+    .eq('endDate', today);
+
+  if (error2) {
+    console.error(error2);
+    throw new Error('Checking-out bookings could not get loaded');
+  }
+
+  // Combine results and sort by created_at
+  const allBookings = [...unconfirmedBooking, ...checkingOutBookings].sort(
+    (a, b) => new Date(a.created_at) - new Date(b.created_at)
+  );
+
+  return allBookings;
+}
