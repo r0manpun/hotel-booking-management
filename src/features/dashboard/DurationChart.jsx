@@ -144,7 +144,6 @@ const renderCustomizedLabel = ({
   innerRadius,
   outerRadius,
   percent,
-  index,
 }) => {
   const radius = innerRadius + (outerRadius - innerRadius) * 0.3;
   const x = cx + radius * Math.cos(-midAngle * RADIAN);
