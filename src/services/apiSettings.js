@@ -11,7 +11,6 @@ export async function getSettings() {
     .single();
 
   if (error) {
-    console.error(error.message);
     throw new Error('Setting could not be loaded');
   }
 
@@ -20,7 +19,7 @@ export async function getSettings() {
 
 /**
  *
- * @param {Object} newSettings 
+ * @param {Object} newSettings
  * @returns {Settings} settings
  */
 export async function updateSetting(newSettings) {
@@ -32,7 +31,6 @@ export async function updateSetting(newSettings) {
     .single();
 
   if (error) {
-    console.error(error.message);
     throw new Error('Setting could not be updated');
   }
 

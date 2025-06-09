@@ -32,7 +32,6 @@ export async function getBookings({ filter, sortBy, page }) {
   const { data, error, count } = await query;
 
   if (error) {
-    console.error(error.message);
     throw new Error('Failed to fetch bookings');
   }
 
@@ -47,7 +46,6 @@ export async function getBooking(id) {
     .single();
 
   if (error) {
-    console.error(error.message);
     throw new Error('Failed to fetch booking');
   }
 
@@ -63,7 +61,6 @@ export async function updateBooking(id, obj) {
     .single();
 
   if (error) {
-    console.error(error);
     throw new Error('Booking could not be uploaded');
   }
 
@@ -79,7 +76,6 @@ export async function deleteBooking(id) {
     .single();
 
   if (error) {
-    console.error(error);
     throw new Error('Booking could not be deleted!');
   }
 
@@ -94,7 +90,6 @@ export async function getBookingAfterDate(date) {
     .lte('created_at', getToday({ end: true }));
 
   if (error) {
-    console.error(error);
     throw new Error('Booking could not be loaded!');
   }
 
@@ -109,7 +104,6 @@ export async function getStaysAfterDate(date) {
     .lte('startDate', getToday());
 
   if (error) {
-    console.error(error);
     throw new Error('Stays could not be loaded!');
   }
 
@@ -127,7 +121,6 @@ export async function getStaysTodayActivity() {
     .eq('startDate', today);
 
   if (error1) {
-    console.error(error1);
     throw new Error('Unconfirmed bookings could not get loaded');
   }
 
@@ -139,7 +132,6 @@ export async function getStaysTodayActivity() {
     .eq('endDate', today);
 
   if (error2) {
-    console.error(error2);
     throw new Error('Checking-out bookings could not get loaded');
   }
 
