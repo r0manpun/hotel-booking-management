@@ -17,7 +17,7 @@ function SignupForm() {
     signUp(
       { fullName, email, password },
       {
-        // onSettled: reset,
+        onSettled: reset,
       }
     );
   }
