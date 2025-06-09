@@ -6,11 +6,12 @@ import TodayActivity from '../check-in-out/TodayActivity';
 import { useRecentBookings } from './useRecentBookings';
 import { useRecentStays } from './useRecentStays';
 import { useCabins } from '../cabins/useCabins';
+import DurationChart from './DurationChart';
 
 const StyledDashboardLayout = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-columns: auto 34rem auto;
+  grid-template-rows: auto 34rem auto;
   gap: 2.4rem;
 `;
 
@@ -36,7 +37,7 @@ function DashboardLayout() {
         cabinCount={cabins?.length}
       />
       <TodayActivity />
-      <p>DurationChart</p>
+      <DurationChart confirmedStays={confirmedStays} />
       <p>SalesChart</p>
     </StyledDashboardLayout>
   );

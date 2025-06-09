@@ -6,7 +6,7 @@ import MainNav from './MainNav';
 const StyledAside = styled.aside`
   grid-row: 1/-1;
   background-color: var(--color-slate-0);
-  border-right: 1px solid var(--color-slate-100);
+  border-right: 1px solid var(--color-slate-0);
   display: flex;
   flex-direction: column;
   padding: 3.2rem 2.4rem;

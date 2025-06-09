@@ -62,6 +62,9 @@ const GlobalStyles = createGlobalStyle`
       --color-yellow-700: #Fef9c3;
       --color-silver-100: #374151;
       --color-silver-700: #f3f4f6;
+      --color-indigo-100: #3730a3;
+--color-indigo-700: #e0e7ff;
+
 
 --image-grayscale: 10%;
 --image-opacity: 90%;

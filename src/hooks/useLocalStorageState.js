@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
  * @returns {[any, function]} - An array containing the current value and a function to update it.
  */
 
-export function useLocalStorageState(key, initialValue) {
+export function useLocalStorageState(initialValue, key) {
   const [value, setValue] = useState(function () {
     const storedValue = localStorage.getItem(key);
     return storedValue ? JSON.parse(storedValue) : initialValue;

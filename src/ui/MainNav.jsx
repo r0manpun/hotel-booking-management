@@ -34,7 +34,7 @@ const StyledNavLink = styled(NavLink)`
   &.active:link,
   &.active:visited {
     color: var(--color-slate-800);
-    background-color: var(--color-slate-100);
+    background-color: var(--color-slate-50);
     border-radius: var(--border-radius-sm);
   }
 
@@ -55,7 +55,7 @@ const StyledNavLink = styled(NavLink)`
 
 function MainNav() {
   return (
-    <nav className='main-nav'>
+    <nav>
       <NavList>
         <li>
           <StyledNavLink to='/dashboard'>
