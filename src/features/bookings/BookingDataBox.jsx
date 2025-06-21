@@ -4,13 +4,13 @@ import {
   HiOutlineCurrencyDollar,
   HiOutlineHomeModern,
 } from 'react-icons/hi2';
-import { format, formatDistance, isToday, parseISO } from 'date-fns';
+import { format, isToday } from 'date-fns';
 import styled from 'styled-components';
 
 import DataItem from '../../components/DataItem';
 import Flag from '../../components/Flag';
 
-import { formatCurrency } from '../../utils/helper';
+import { formatCurrency, formatDistanceFromNow } from '../../utils/helper';
 
 const StyledBookingDataBox = styled.section`
   background-color: var(--color-slate-0);
@@ -139,11 +139,7 @@ function BookingDataBox({ booking }) {
             {format(new Date(startDate), 'EEE, MMM dd yyyy')} (
             {isToday(new Date(startDate))
               ? 'Today'
-              : formatDistance(parseISO(startDate), new Date(), {
-                  addSuffix: true,
-                })
-                  .replace('about ', '')
-                  .replace('in', 'In')}
+              : formatDistanceFromNow(startDate)}
             ) &mdash; {format(new Date(endDate), 'EEE, MMM dd yyyy')}
           </p>
         )}
