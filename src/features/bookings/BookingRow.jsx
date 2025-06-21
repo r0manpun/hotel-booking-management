@@ -5,6 +5,7 @@ import {
   HiEye,
   HiTrash,
 } from 'react-icons/hi2';
+import { format, isToday } from 'date-fns';
 import styled from 'styled-components';
 
 import Table from '../../components/Table';
@@ -13,7 +14,7 @@ import Menus from '../../components/Menus';
 import Modal from '../../components/Modal';
 import ConfirmDelete from '../../components/ConfirmDelete';
 
-import { formatCurrency } from '../../utils/helper';
+import { formatCurrency, formatDistanceFromNow } from '../../utils/helper';
 import { useCheckOut } from '../check-in-out/useCheckOut';
 import { useDeleteBooking } from './useDeleteBooking';
 
@@ -81,7 +82,18 @@ function BookingRow({
         </Stacked>
 
         <Stacked>
-          <span>{startDate}</span>
+          <span>
+            {isToday(new Date(startDate))
+              ? 'Today'
+              : formatDistanceFromNow(startDate)}{' '}
+            &rarr;{' '}
+            {numNights === 1 ? numNights + ' night' : numNights + ' nights'}{' '}
+            stay
+          </span>
+          <span>
+            {format(new Date(startDate), 'MMM dd yyyy')} &mdash;{' '}
+            {format(new Date(endDate), 'MMM dd yyyy')}
+          </span>
         </Stacked>
 
         <Tag type={statusToTagName[status]}>{status.replace('-', ' ')}</Tag>
